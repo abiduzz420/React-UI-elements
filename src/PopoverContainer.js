@@ -37,7 +37,10 @@ class PopoverContainer extends Component {
       <div style={popContainerStyle}>
         <button
           id="pop-btn"
-          onClick={() => this.setState({ popVisible: !this.state.popVisible })}
+          onClick={() =>
+            this.setState({
+              popVisible: !this.state.popVisible
+            })}
           style={triggerStyle}
         >
           Popover on {this.props.direction}
@@ -81,19 +84,23 @@ class PopoverContent extends Component {
     console.log('buttonMarginLeft', this.props.buttonMarginLeft);
     let top = null;
     let left = null;
+    console.log('this.state.contentHeight', this.state.contentHeight);
     switch (this.props.direction) {
       case 'RIGHT':
-        top =
-          this.props.buttonMarginTop -
-          (this.state.contentHeight - this.props.buttonHeight) / 2;
+        top = this.props.buttonMarginTop - (54 - this.props.buttonHeight) / 2;
         left = this.props.buttonWidth + this.props.buttonMarginLeft + 10;
         break;
       case 'LEFT':
-        top =
-          this.props.buttonMarginTop -
-          (this.state.contentHeight - this.props.buttonHeight) / 2;
+        // Content Height = 54
+        top = this.props.buttonMarginTop - (54 - this.props.buttonHeight) / 2;
         left = this.props.buttonMarginLeft - this.contentWidth - 30;
         break;
+      case 'TOP':
+        // Content Height = 54
+        top = this.props.buttonMarginTop - 54 - 10;
+        left =
+          this.props.buttonMarginLeft -
+          (this.contentWidth - this.props.buttonWidth) / 2;
       default:
         break;
     }
